@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online age calculator tool. Calculate your exact age in years, months, days, hours, minutes and seconds. Simple, accurate and easy to use.">
+    <meta name="keywords" content="age calculator, birthday calculator, how old am I, calculate age, date calculator, time calculator, exact age calculator, age in years months days">
+    <meta name="author" content="Ishan Sekh">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Age Calculator Online | Calculate Your Exact Age in Years, Months & Days">
+    <meta property="og:description" content="Calculate your exact age in years, months, days, hours, minutes and seconds with our free online tool">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com/age-calculator">
+    <meta property="og:image" content="https://yourwebsite.com/images/age-calculator-preview.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="theme-color" content="#6c5ce7">
+    <title>Age Calculator Online | Calculate Your Exact Age in Years, Months & Days</title>
+    <link rel="canonical" href="https://yourwebsite.com/age-calculator">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-light: #6c5ce7;
+            --secondary-light: #a29bfe;
+            --bg-light: #f8f9fa;
+            --text-light: #2d3436;
+            --card-light: #ffffff;
+            
+            --font-primary: 'Poppins', sans-serif;
+            --font-secondary: 'Montserrat', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background: var(--bg-light);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            color: var(--text-light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .age-calculator-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 992px) {
+            .age-calculator-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .ad-container {
+            background: rgba(108, 92, 231, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 250px;
+            border: 1px dashed #ccc;
+            margin-bottom: 30px;
+        }
+
+        .ad-container p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        .age-calculator-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            background: var(--card-light);
+            color: var(--text-light);
+            position: relative;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--primary-light), var(--secondary-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-family: var(--font-secondary);
+        }
+
+        .author {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            opacity: 0.7;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            font-family: var(--font-secondary);
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 15px 12px 45px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: var(--font-primary);
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 15px;
+            top: 40px;
+            color: var(--primary-light);
+            font-size: 1.2rem;
+        }
+
+        .btn-calculate {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--primary-light), var(--secondary-light));
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-family: var(--font-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-calculate:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
+        }
+
+        .result-container {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border-radius: 15px;
+            background: rgba(108, 92, 231, 0.1);
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .result-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-family: var(--font-secondary);
+        }
+
+        .age-result {
+            font-size: 1.1rem;
+            line-height: 2;
+        }
+
+        .age-value {
+            font-weight: 600;
+            color: var(--primary-light);
+        }
+
+        .age-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .age-item i {
+            width: 24px;
+            text-align: center;
+        }
+
+        /* Structured Data for SEO */
+        .seo-content {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .seo-content h2 {
+            color: var(--primary-light);
+            font-family: var(--font-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .age-calculator-container {
+                padding: 1.5rem;
+            }
+            
+            .title {
+                font-size: 1.6rem;
+            }
+            
+            .age-result {
+                font-size: 1rem;
+            }
+            
+            .result-title {
+                font-size: 1.3rem;
+            }
+        }
+
+        /* Micro-interactions */
+        .fa-birthday-cake {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .fa-user-clock {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="age-calculator-wrapper">
+            <div>
+                <!-- Top Ad Banner -->
+                <div class="ad-container">
+                    <div class="ad-placeholder">
+                        <i class="fas fa-ad" style="font-size: 2rem; color: #6c5ce7;"></i>
+                        <p>Advertisement</p>
+                    </div>
+                </div>
+                
+                <div class="age-calculator-container">
+                    <div class="header">
+                        <h1 class="title"><i class="fas fa-birthday-cake" aria-hidden="true"></i> Age Calculator</h1>
+                        <p class="author">By Ishan Sekh</p>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="birthDateTime">Your Birth Date & Time</label>
+                        <i class="fas fa-calendar-day" aria-hidden="true"></i>
+                        <input type="datetime-local" id="birthDateTime" class="form-control" aria-describedby="birthDateTimeHelp">
+                        <div id="birthDateTimeHelp" class="sr-only">Select your date and time of birth to calculate your exact age</div>
+                    </div>
+                    
+                    <button class="btn-calculate" id="calculateAge">
+                        <i class="fas fa-calculator" aria-hidden="true"></i> Calculate Age
+                    </button>
+                    
+                    <div class="result-container" id="resultContainer">
+                        <h2 class="result-title"><i class="fas fa-user-clock" aria-hidden="true"></i> Your Age</h2>
+                        <div class="age-result" id="ageResult"></div>
+                    </div>
+                </div>
+                
+                <!-- SEO Content Section -->
+                <div class="seo-content">
+                    <h2><i class="fas fa-search" aria-hidden="true"></i> About Our Age Calculator</h2>
+                    <p>Our free online age calculator tool helps you determine your exact age in years, months, days, hours, minutes, and seconds. Whether you're curious about your age down to the second or need to calculate someone else's age for official purposes, our precise calculator provides accurate results instantly.</p>
+                    
+                    <h2><i class="fas fa-question-circle" aria-hidden="true"></i> How to Use the Age Calculator</h2>
+                    <p>Simply enter your birth date and time (or any date you want to calculate from) in the fields above, then click "Calculate Age". The tool will instantly display your exact age with a real-time counter that updates every second.</p>
+                    
+                    <h2><i class="fas fa-lightbulb" aria-hidden="true"></i> Why Use Our Age Calculator?</h2>
+                    <ul>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> <strong>Precision:</strong> Calculates down to the second</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> <strong>Real-time:</strong> Updates continuously</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> <strong>Simple:</strong> Easy-to-use interface</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> <strong>Accessible:</strong> Works on all devices</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Sidebar for Ads -->
+            <div class="ad-sidebar">
+                <div class="ad-container" style="height: 600px; position: sticky; top: 20px;">
+                    <div class="ad-placeholder">
+                        <i class="fas fa-ad" style="font-size: 2rem; color: #6c5ce7;"></i>
+                        <p>Advertisement</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom Ad Banner -->
+        <div class="ad-container" style="margin-top: 40px;">
+            <div class="ad-placeholder">
+                <i class="fas fa-ad" style="font-size: 2rem; color: #6c5ce7;"></i>
+                <p>Advertisement</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Age calculator
+            const calculateBtn = document.getElementById('calculateAge');
+            const birthDateTime = document.getElementById('birthDateTime');
+            const resultContainer = document.getElementById('resultContainer');
+            const ageResult = document.getElementById('ageResult');
+            
+            // Set default date to 25 years ago
+            const now = new Date();
+            const defaultDate = new Date(now.getFullYear() - 25, now.getMonth(), now.getDate(), now.getHours(), now.getMinutes());
+            birthDateTime.value = defaultDate.toISOString().slice(0, 16);
+            
+            calculateBtn.addEventListener('click', function() {
+                if (!birthDateTime.value) {
+                    showError('Please select your birth date and time');
+                    return;
+                }
+                
+                const birthDate = new Date(birthDateTime.value);
+                const currentDate = new Date();
+                
+                if (birthDate > currentDate) {
+                    showError('Birth date cannot be in the future');
+                    return;
+                }
+                
+                calculateAge(birthDate, currentDate);
+                resultContainer.style.display = 'block';
+                
+                // Track calculation event
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'age_calculation', {
+                        'event_category': 'engagement',
+                        'event_label': 'Age Calculated'
+                    });
+                }
+            });
+            
+            function showError(message) {
+                ageResult.innerHTML = `<div style="color: #e74c3c; text-align: center;"><i class="fas fa-exclamation-triangle" aria-hidden="true"></i> ${message}</div>`;
+                resultContainer.style.display = 'block';
+                setTimeout(() => {
+                    resultContainer.style.display = 'none';
+                }, 3000);
+            }
+            
+            function calculateAge(birthDate, currentDate) {
+                let diff = currentDate - birthDate;
+                
+                // Calculate years
+                const years = currentDate.getFullYear() - birthDate.getFullYear();
+                const monthCheck = currentDate.getMonth() - birthDate.getMonth();
+                const dayCheck = currentDate.getDate() - birthDate.getDate();
+                
+                const adjustedYears = (monthCheck < 0 || (monthCheck === 0 && dayCheck < 0)) ? years - 1 : years;
+                
+                // Calculate months
+                let months = currentDate.getMonth() - birthDate.getMonth();
+                if (months < 0 || (months === 0 && dayCheck < 0)) {
+                    months += 12;
+                }
+                if (dayCheck < 0) {
+                    months--;
+                }
+                
+                // Calculate days
+                const tempDate = new Date(currentDate);
+                tempDate.setMonth(tempDate.getMonth() - months);
+                tempDate.setDate(tempDate.getDate() - dayCheck);
+                const daysDiff = Math.floor((currentDate - tempDate) / (1000 * 60 * 60 * 24));
+                
+                // Calculate time components
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                
+                // Display result
+                updateAgeDisplay(adjustedYears, months, daysDiff, hours, minutes, seconds);
+                
+                // Update every second
+                clearInterval(window.ageInterval);
+                window.ageInterval = setInterval(() => {
+                    diff += 1000;
+                    const newHours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const newMinutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                    const newSeconds = Math.floor((diff % (1000 * 60)) / 1000);
+                    
+                    updateAgeDisplay(adjustedYears, months, daysDiff, newHours, newMinutes, newSeconds);
+                }, 1000);
+            }
+            
+            function updateAgeDisplay(years, months, days, hours, minutes, seconds) {
+                ageResult.innerHTML = `
+                    <div class="age-item">
+                        <i class="fas fa-calendar-check" aria-hidden="true"></i>
+                        <span><span class="age-value">${years}</span> Years, <span class="age-value">${months}</span> Months, <span class="age-value">${days}</span> Days</span>
+                    </div>
+                    <div class="age-item">
+                        <i class="fas fa-clock" aria-hidden="true"></i>
+                        <span><span class="age-value">${hours}</span> Hours, <span class="age-value">${minutes}</span> Minutes, <span class="age-value">${seconds}</span> Seconds</span>
+                    </div>
+                    <div style="margin-top: 15px; font-size: 0.9rem; text-align: center;">
+                        <i class="fas fa-heart" style="color: #e74c3c;" aria-hidden="true"></i> Created by Ishan Sekh
+                    </div>
+                `;
+            }
+            
+            // Initialize datetime picker
+            birthDateTime.addEventListener('focus', function() {
+                this.showPicker();
+            });
+            
+            // Add structured data for SEO
+            const structuredData = {
+                "@context": "https://schema.org",
+                "@type": "WebApplication",
+                "name": "Age Calculator Online",
+                "description": "Calculate your exact age in years, months, days, hours, minutes and seconds",
+                "applicationCategory": "UtilityApplication",
+                "operatingSystem": "All",
+                "offers": {
+                    "@type": "Offer",
+                    "price": "0",
+                    "priceCurrency": "USD"
+                },
+                "creator": {
+                    "@type": "Person",
+                    "name": "Ishan Sekh"
+                }
+            };
+            
+            const scriptTag = document.createElement('script');
+            scriptTag.type = 'application/ld+json';
+            scriptTag.text = JSON.stringify(structuredData);
+            document.head.appendChild(scriptTag);
+        });
+    </script>
+</body>
+</html>
